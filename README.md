@@ -10,10 +10,10 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-* "ActionBarActivity" ist Main Activity
+* "ActionBarActivity" ist Main Activity (find "PurinApp / src / com / xek6ae / PurinApp /")
 * Auf die Main Activity bauen drei Fragmente auf.
 * Dependencies
-* Database configuration: PurinDatabase_1.db (siehe assets/) *read only*
+* Database configuration: PurinDatabase_1.db (find "assets /") *read only*
 * How to run tests? Run als Debug in einer VM oder "PurinApp / out / production / PurinApp / PurinApp.apk" auf Smartphone installieren
 * Deployment instructions
 
