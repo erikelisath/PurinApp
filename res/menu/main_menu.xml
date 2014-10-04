@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_more"
+          android:icon="@drawable/ic_action_overflow"
+          android:showAsAction="always"
+          android:title="More">
+            <menu>
+                <item android:id="@+id/action_update"
+                      android:showAsAction="never"
+                      android:icon="@drawable/ic_action_refresh"
+                      android:title="Update"/>
+                <item android:id="@+id/action_settings"
+                      android:showAsAction="never"
+                      android:icon="@drawable/ic_action_settings"
+                      android:title="Settings"/>
+                <item android:id="@+id/action_uber"
+                      android:showAsAction="never"
+                      android:icon="@drawable/ic_action_about"
+                      android:title="Über"/>
+            </menu>
+    </item>
+
+</menu>
