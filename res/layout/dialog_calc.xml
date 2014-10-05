@@ -10,14 +10,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/dialog_textCalc" android:layout_margin="10dp"/>
+            android:text=""
+            android:id="@+id/dialog_textCalc"
+            android:layout_margin="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Diesen Wert können sie ihrem Tagesbedarf hinzufügen."
-            android:id="@+id/textView" android:layout_gravity="center_horizontal" android:layout_margin="10dp"/>
+            android:text="@string/textAdd"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -25,17 +28,19 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Abbruch"
+                android:text="@string/buttonCancel"
                 android:id="@+id/dialog_buttonCancel"
                 android:background="@drawable/button_theme"
-                style="?android:attr/borderlessButtonStyle" android:layout_weight="1.0"/>
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_weight="1.0"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hinzufügen"
+                android:text="@string/buttonAdd"
                 android:id="@+id/dialog_buttonAdd"
                 android:background="@drawable/button_theme"
-                style="?android:attr/borderlessButtonStyle" android:layout_weight="1.0"/>
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_weight="1.0"/>
     </LinearLayout>
 
 </LinearLayout>

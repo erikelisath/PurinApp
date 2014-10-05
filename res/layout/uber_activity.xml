@@ -3,13 +3,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:padding="10dp">
+              android:layout_height="match_parent"
+              android:padding="10dp">
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Version"
+            android:text="@string/textVersion"
             android:id="@+id/textView"/>
     <TextView
             android:layout_width="wrap_content"
@@ -21,42 +22,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Webside"
-            android:id="@+id/textView3" android:layout_marginTop="10dp"/>
+            android:text="@string/textWebsite"
+            android:id="@+id/textView3"
+            android:layout_marginTop="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="www.elisath.de"
-            android:id="@+id/textView4" android:linksClickable="false" android:autoLink="web"/>
+            android:text="@string/textHomepage"
+            android:id="@+id/textView4"
+            android:linksClickable="false"
+            android:autoLink="web"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Developer"
-            android:id="@+id/textView5" android:layout_marginTop="10dp"/>
+            android:text="@string/textDeveloper"
+            android:id="@+id/textView5"
+            android:layout_marginTop="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="xek6ae"
+            android:text="@string/textName"
             android:id="@+id/textView6"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="xek6ae@googlemail.com"
-            android:id="@+id/textView7" android:autoLink="email"/>
+            android:text="@string/textEmail"
+            android:id="@+id/textView7"
+            android:autoLink="email"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Database Content"
-            android:id="@+id/textView8" android:layout_marginTop="10dp"/>
+            android:text="@string/textDatabase"
+            android:id="@+id/textView8"
+            android:layout_marginTop="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Counting"
+            android:text="@string/textCounting"
             android:id="@+id/uber_counting"/>
 </LinearLayout>

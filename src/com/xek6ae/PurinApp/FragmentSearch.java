@@ -34,7 +34,6 @@ public class FragmentSearch extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Log.d("XEK", "onActivityCreated Search");
         SearchView search = (SearchView) getActivity().findViewById(R.id.searchView);
-
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -53,6 +52,7 @@ public class FragmentSearch extends Fragment {
                 return false;
             }
         });
+
     }
 
 }

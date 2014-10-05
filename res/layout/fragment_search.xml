@@ -11,18 +11,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Suche"
-            android:id="@+id/textView" android:layout_margin="10dp"/>
+            android:text="@string/textSuche"
+            android:id="@+id/textView"
+            android:layout_margin="10dp"/>
     <SearchView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/searchView" android:iconifiedByDefault="false"/>
+            android:id="@+id/searchView"
+            android:iconifiedByDefault="false"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Filtern nach"
-            android:id="@+id/textView2" android:layout_margin="10dp"/>
+            android:text="@string/textFilter"
+            android:id="@+id/textView2"
+            android:layout_margin="10dp"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -30,34 +33,38 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="Fleisch"
+                android:text="@string/textFleisch"
                 android:drawableTop="@drawable/ic_fleisch_k"
-                android:id="@+id/button" android:layout_weight="1.0"
+                android:id="@+id/button"
+                android:layout_weight="1.0"
                 style="?android:attr/borderlessButtonStyle"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="Fisch"
+                android:text="@string/textFisch"
                 android:drawableTop="@drawable/ic_fisch_k"
-                android:id="@+id/button2" android:layout_weight="1.0"
+                android:id="@+id/button2"
+                android:layout_weight="1.0"
                 style="?android:attr/borderlessButtonStyle"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="Gemüse"
+                android:text="@string/textGemuese"
                 android:drawableTop="@drawable/ic_gemuse_k"
-                android:id="@+id/button3" android:layout_weight="1.0"
+                android:id="@+id/button3"
+                android:layout_weight="1.0"
                 style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:id="@+id/linearLayout" android:layout_marginTop="10dp">
+            android:id="@+id/linearLayout"
+            android:layout_marginTop="10dp">
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="Obst"
+                android:text="@string/textObst"
                 android:drawableTop="@drawable/ic_obst_k"
                 android:id="@+id/button4"
                 android:layout_weight="1.0"
@@ -65,14 +72,14 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="Milchprodukt"
+                android:text="@string/textMilch"
                 android:drawableTop="@drawable/ic_milch_k"
                 android:id="@+id/button5"
                 android:layout_weight="1.0"
                 style="?android:attr/borderlessButtonStyle"/>
         <Button android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="Getreide"
+                android:text="@string/textGetreide"
                 android:drawableTop="@drawable/ic_getreide_k"
                 android:id="@+id/button6"
                 android:layout_weight="1.0"
@@ -86,22 +93,25 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="viel Purin"
+                android:text="@string/textPurinXL"
                 android:id="@+id/button7"
-                android:layout_weight="1.0" android:textColor="#ff1919"
+                android:layout_weight="1.0"
+                android:textColor="#ff1919"
                 style="?android:attr/borderlessButtonStyle"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="mittel Purin"
+                android:text="@string/textPurinM"
                 android:id="@+id/button8"
-                android:layout_weight="1.0" android:textColor="#ffff4c"
+                android:layout_weight="1.0"
+                android:textColor="#ffff4c"
                 style="?android:attr/borderlessButtonStyle"/>
         <Button android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="wenig Purin"
+                android:text="@string/textPurinS"
                 android:id="@+id/button9"
-                android:layout_weight="1.0" android:textColor="#198c19"
+                android:layout_weight="1.0"
+                android:textColor="#198c19"
                 style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 </LinearLayout>
