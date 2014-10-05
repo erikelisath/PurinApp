@@ -9,7 +9,8 @@
         <activity android:name=".ActionBarActivity"
                   android:label="@string/app_name"
                   android:launchMode="singleTop"
-                  android:screenOrientation="portrait">
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

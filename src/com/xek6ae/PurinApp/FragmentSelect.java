@@ -4,10 +4,8 @@ import android.app.*;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
+import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import org.w3c.dom.Text;
 
@@ -85,41 +83,21 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         //textPurinCalc = (TextView)getActivity().findViewById(R.id.select_textPurin2);
         imageLights = (ImageView)getActivity().findViewById(R.id.select_pictogramAttention);
         inputPurinValue = (EditText)getActivity().findViewById(R.id.select_inputNumber);
-
-
+        inputPurinValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if(actionId == EditorInfo.IME_ACTION_GO){
+                    calculateEvent(v);
+                    handled = true;
+                }
+                return handled;
+            }
+        });
         buttoncalculate = (Button)getActivity().findViewById(R.id.select_buttonCalculate);
-        //buttonadd = (ImageButton)getActivity().findViewById(R.id.button);
-
         buttoncalculate.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String tmp = inputPurinValue.getText().toString();
-                if(!(tmp.isEmpty())){
-                    purinInput = Integer.parseInt(inputPurinValue.getText().toString());
-
-
-
-                    int actuallyValue = (purinInput*purinValue)/100;
-
-                    if(actuallyValue<=99999){
-                        //textPurinCalc.setText(String.valueOf(actuallyValue)+" mg Purin");
-                        dialogbundle.putString("CALC", String.valueOf(actuallyValue));
-                        dialogbundle.putString("INPUT", inputPurinValue.getText().toString());
-                        CalcDialog dialog = new CalcDialog();
-                        dialog.setArguments(dialogbundle);
-                        dialog.show(fm,"Dialog");
-                    }else{
-                        Toast.makeText(v.getContext(), "Value too hight, control input.", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    purinInput = 0;
-                    Toast.makeText(v.getContext(), "Please insert a value.", Toast.LENGTH_SHORT).show();
-                }
-
-                //buttonadd.setVisibility(View.VISIBLE);
-
-
-
-
+                calculateEvent(v);
             }
         });
     }
@@ -175,6 +153,29 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         Log.d("XEK", "Nothing selected");
+    }
+
+    public void calculateEvent (View v){
+        String tmp = inputPurinValue.getText().toString();
+        if(!(tmp.isEmpty())){
+            purinInput = Integer.parseInt(inputPurinValue.getText().toString());
+
+            int actuallyValue = (purinInput*purinValue)/100;
+
+            if(actuallyValue<=99999){
+                //textPurinCalc.setText(String.valueOf(actuallyValue)+" mg Purin");
+                dialogbundle.putString("CALC", String.valueOf(actuallyValue));
+                dialogbundle.putString("INPUT", inputPurinValue.getText().toString());
+                CalcDialog dialog = new CalcDialog();
+                dialog.setArguments(dialogbundle);
+                dialog.show(fm,"Dialog");
+            }else{
+                Toast.makeText(v.getContext(), "Value too hight, control input.", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            purinInput = 0;
+            Toast.makeText(v.getContext(), "Please insert a value.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

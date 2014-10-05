@@ -6,149 +6,163 @@
               android:weightSum="1"
               style="@style/MainBackground">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/textAuswahl"
-            android:id="@+id/select_text" android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"/>
-    <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:padding="2dp" android:background="@color/theme_highlight"
-            android:layout_margin="1dp">
-        <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/select_spinner" android:layout_gravity="center_horizontal"
-                android:background="@color/theme_background" android:spinnerMode="dialog"/>
-    </FrameLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp">
-        <ImageView
-                android:layout_width="15dp"
-                android:layout_height="fill_parent"
-                android:id="@+id/select_pictogramAttention" android:layout_gravity="center_vertical" android:layout_marginRight="5dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="#"
-                android:id="@+id/select_textPurinName"/>
-    </LinearLayout>
-    <TextView
+    <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="#"
-            android:id="@+id/select_textCategory" android:layout_marginLeft="30dp"/>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-            android:layout_marginTop="50dp">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/textPurinwert"
-                android:id="@+id/select_textPurin1"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="#"
-                android:textColor="@color/theme_highlight"
-                android:id="@+id/select_textPurinValue" android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" android:textSize="30dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/textEinheit"
-                android:id="@+id/select_textUnit1"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/textHarnwert"
-                android:id="@+id/select_textHarn"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="#"
-                android:id="@+id/select_textHarnValue" android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/textEinheit"
-                android:id="@+id/select_textUnit2"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:layout_margin="10dp"
-            android:background="@color/theme_background_highlight" android:padding="5dp">
+            android:id="@+id/scrollView">>
         <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content">
             <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/textAuswahl"
+                    android:id="@+id/select_text" android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"/>
+            <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:padding="2dp" android:background="@color/theme_highlight"
+                    android:layout_margin="1dp">
+                <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/select_spinner" android:layout_gravity="center_horizontal"
+                        android:background="@color/theme_background" android:spinnerMode="dialog"/>
+            </FrameLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp">
+                <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/select_pictogramAttention" android:layout_gravity="center_vertical" android:layout_marginRight="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text=""
+                        android:id="@+id/select_textPurinName"/>
+            </LinearLayout>
+            <TextView
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/textAusrechnen"
-                    android:id="@+id/select_textInput" android:layout_marginRight="2dp"/>
-        </LinearLayout>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="#"
-                android:id="@+id/select_textPurinNameSmall"/>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-            <EditText
-                    android:layout_width="65dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/select_inputNumber" android:maxLength="5" android:layout_marginLeft="50dp"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/textEinheit2"
-                    android:id="@+id/select_textUnit3" android:layout_marginRight="5dp"/>
-            <!--TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="#"
-                    android:id="@+id/select_textPurin2" android:minWidth="150dp"/-->
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buttonBerechne"
-                    android:id="@+id/select_buttonCalculate"
-                    android:background="@drawable/button_theme"
-                    style="?android:attr/borderlessButtonStyle" android:layout_marginBottom="10dp"
-                    android:layout_weight="1.0"/>
+                    android:text=""
+                    android:id="@+id/select_textCategory" android:layout_marginLeft="30dp"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                    android:layout_marginTop="50dp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/textPurinwert"
+                        android:id="@+id/select_textPurin1"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text=""
+                        android:textColor="@color/theme_highlight"
+                        android:id="@+id/select_textPurinValue" android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp" android:textSize="30dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/textEinheit"
+                        android:id="@+id/select_textUnit1"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/textHarnwert"
+                        android:id="@+id/select_textHarn"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text=""
+                        android:id="@+id/select_textHarnValue" android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/textEinheit"
+                        android:id="@+id/select_textUnit2"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:layout_margin="10dp"
+                    android:background="@color/theme_background_highlight" android:padding="5dp">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/textAusrechnen"
+                            android:id="@+id/select_textInput" android:layout_marginRight="2dp"/>
+                </LinearLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/select_textPurinNameSmall"/>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                    <EditText
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/select_inputNumber"
+                            android:maxLength="5"
+                            android:layout_marginLeft="50dp"
+                            android:imeOptions="actionGo"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/textEinheit2"
+                            android:id="@+id/select_textUnit3" android:layout_marginRight="5dp"/>
+                    <!--TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="#"
+                            android:id="@+id/select_textPurin2" android:minWidth="150dp"/-->
+                    <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/buttonBerechne"
+                            android:id="@+id/select_buttonCalculate"
+                            android:background="@drawable/button_theme"
+                            style="?android:attr/borderlessButtonStyle" android:layout_marginBottom="10dp"
+                            android:layout_weight="1.0"/>
 
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
 
