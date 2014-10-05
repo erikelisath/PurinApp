@@ -1,11 +1,13 @@
 package com.xek6ae.PurinApp;
 
 import android.app.*;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 import org.w3c.dom.Text;
 
@@ -22,7 +24,8 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
     private int purinInput;
     private Bundle dialogbundle;
     private ProgressDialog progressDialog;
-    private ProgressBar progressBar;
+    private FragmentManager fm;
+    private SpinnerDialog progressSpinner;
 
     private Spinner s1;
     private TextView textPurin;
@@ -42,28 +45,27 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         Log.d("XEK", "onCreate Select");
         //TODO: was hier her?
         dialogbundle  = new Bundle();
+        fm = getFragmentManager();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d("XEK", "onCreateView Select");
-        progressDialog = new ProgressDialog(container.getContext(), R.style.LoadingDialog);
-        progressDialog.setCancelable(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //progressDialog = new ProgressDialog(container.getContext(), R.style.LoadingDialog);
+        //progressDialog.setCancelable(false);
+        //progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         //progressDialog.setContentView(R.layout.dialog_progressbar);
-        progressDialog.setTitle(null);
-        progressDialog.show();
+        //progressDialog.setTitle(null);
+        //progressDialog.show();
         //TODO: custom Progressbar dialog
+        progressSpinner = new SpinnerDialog();
+        progressSpinner.show(fm, null);
         return inflater.inflate(R.layout.fragment_select, container, false);
     }
 
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         Log.d("XEK", "onActivityCreate Select");
-
-
-        progressBar = (ProgressBar)getActivity().findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
 
         //recived bundle from main Activity ( arrayList )
         Bundle bundle = this.getArguments();
@@ -94,7 +96,7 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
                 if(!(tmp.isEmpty())){
                     purinInput = Integer.parseInt(inputPurinValue.getText().toString());
 
-                    FragmentManager fm = getFragmentManager();
+
 
                     int actuallyValue = (purinInput*purinValue)/100;
 
@@ -163,8 +165,8 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
             imageLights.setImageResource(R.drawable.green);
         }
 
-        progressDialog.dismiss(); //LOL INTERNET ...
-        progressBar.setVisibility(View.INVISIBLE);
+        //progressDialog.dismiss(); //LOL INTERNET ...
+        progressSpinner.dismiss();
         inputPurinValue.setText("");
         //textPurinCalc.setText("0 mg Purin");
         //buttonadd.setVisibility(View.GONE);
