@@ -171,7 +171,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return labels;
     }
 
-    //TODO: Key benutzen?
+    //TODO: Key benutzen?    kann weg
     public String getDataString(String sql){
         String response;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -188,7 +188,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return response;
     }
 
-    //TODO: Key benutzen?
+    //TODO: Key benutzen?  kann weg
     public int getDataInt(String sql){
         int response;
         SQLiteDatabase db = this.getReadableDatabase();

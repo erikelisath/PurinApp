@@ -50,7 +50,7 @@ public class ActionBarActivity extends Activity {
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("SELECT",list);
         fragmentSelect.setArguments(bundle);
-        fragmentSearch.setArguments(bundle);
+        fragmentSearch.setArguments(bundle); //WARUM?!
         Log.d("XEK", "ActionBar put Bundle");
     }
 
