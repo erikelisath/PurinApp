@@ -12,19 +12,19 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/textSuche"
-            android:id="@+id/textView"
+            android:id="@+id/search_textSuche"
             android:layout_margin="10dp"/>
     <SearchView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/searchView"
-            android:iconifiedByDefault="false"/>
+            android:iconifiedByDefault="false" android:layout_marginRight="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/textFilter"
-            android:id="@+id/textView2"
+            android:id="@+id/search_textFilter"
             android:layout_margin="10dp"/>
     <LinearLayout
             android:orientation="horizontal"
@@ -35,25 +35,25 @@
                 android:layout_height="fill_parent"
                 android:text="@string/textFleisch"
                 android:drawableTop="@drawable/ic_fleisch_k"
-                android:id="@+id/button"
+                android:id="@+id/search_buttonFleisch"
                 android:layout_weight="1.0"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textFisch"
                 android:drawableTop="@drawable/ic_fisch_k"
-                android:id="@+id/button2"
+                android:id="@+id/search_buttonFisch"
                 android:layout_weight="1.0"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textGemuese"
                 android:drawableTop="@drawable/ic_gemuse_k"
-                android:id="@+id/button3"
+                android:id="@+id/search_buttonGemuese"
                 android:layout_weight="1.0"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -66,24 +66,24 @@
                 android:layout_height="fill_parent"
                 android:text="@string/textObst"
                 android:drawableTop="@drawable/ic_obst_k"
-                android:id="@+id/button4"
+                android:id="@+id/search_buttonObst"
                 android:layout_weight="1.0"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textMilch"
                 android:drawableTop="@drawable/ic_milch_k"
-                android:id="@+id/button5"
+                android:id="@+id/search_buttonMilch"
                 android:layout_weight="1.0"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
         <Button android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textGetreide"
                 android:drawableTop="@drawable/ic_getreide_k"
-                android:id="@+id/button6"
+                android:id="@+id/search_buttonGetreide"
                 android:layout_weight="1.0"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -94,25 +94,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textPurinXL"
-                android:id="@+id/button7"
+                android:id="@+id/search_buttonPurinL"
                 android:layout_weight="1.0"
                 android:textColor="#ff1919"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textPurinM"
-                android:id="@+id/button8"
+                android:id="@+id/search_buttonPurinM"
                 android:layout_weight="1.0"
                 android:textColor="#ffff4c"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
         <Button android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="@string/textPurinS"
-                android:id="@+id/button9"
+                android:id="@+id/search_buttonPurinS"
                 android:layout_weight="1.0"
                 android:textColor="#198c19"
-                style="?android:attr/borderlessButtonStyle"/>
+                style="?android:attr/borderlessButtonStyle" android:background="@drawable/button_theme"/>
     </LinearLayout>
 </LinearLayout>
 

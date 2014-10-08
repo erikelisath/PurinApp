@@ -1,6 +1,7 @@
 package com.xek6ae.PurinApp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
  */
 public class ListViewAdapter extends BaseAdapter {
     Context context;
-    ArrayList<String> list = null;
+    ArrayList<String[]> list = null;
 
-    public  ListViewAdapter(Context context, ArrayList<String> list){
+    public  ListViewAdapter(Context context, ArrayList<String[]> list){
         this.context = context;
         this.list = list;
     }
@@ -28,8 +29,8 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public String[] getItem(int position) {
+        return list.get(position);
     }
 
     @Override
@@ -39,14 +40,40 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View row = layoutInflater.inflate(R.layout.list_adapter_row, parent, false);
-        TextView textName = (TextView)row.findViewById(R.id.textView);
-        TextView textKategorie = (TextView)row.findViewById(R.id.textView2);
-        TextView textPurin = (TextView)row.findViewById(R.id.textView3);
+        TextView textName;
+        TextView textKategorie;
+        TextView textPurin;
 
-        textName.setText(list.get(position));
+        if(convertView==null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_adapter_row, parent, false);
+            textName = (TextView)convertView.findViewById(R.id.adapter_textName);
+            textKategorie= (TextView)convertView.findViewById(R.id.adapter_textKategorie);
+            textPurin= (TextView)convertView.findViewById(R.id.adapter_textPurin);
+            convertView.setTag(new ViewHolder(textName, textKategorie, textPurin));
+        }else{
+            ViewHolder viewHolder = (ViewHolder) convertView.getTag();
+            textName = viewHolder.textName;
+            textKategorie = viewHolder.textKategorie;
+            textPurin = viewHolder.textPurin;
+        }
 
-        return row;
+        String[] string = getItem(position);
+        textName.setText(string[0]);
+        textKategorie.setText(string[1]);
+        textPurin.setText("Purinwert "+string[2]+" mg/100g");
+
+        return convertView;
+    }
+
+    private static class ViewHolder{
+        TextView textName;
+        TextView textKategorie;
+        TextView textPurin;
+
+        public ViewHolder(TextView name, TextView kategorie, TextView purin){
+            textName = name;
+            textKategorie = kategorie;
+            textPurin = purin;
+        }
     }
 }

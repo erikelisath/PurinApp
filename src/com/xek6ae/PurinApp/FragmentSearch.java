@@ -17,6 +17,16 @@ import java.util.ArrayList;
  */
 public class FragmentSearch extends Fragment {
 
+    public Button buttonFleisch;
+    public Button buttonFisch;
+    public Button buttonGemuese;
+    public Button buttonObst;
+    public Button buttonGetreide;
+    public Button buttonMilch;
+    public Button buttonPurinL;
+    public Button buttonPurinM;
+    public Button buttonPurinS;
+
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Log.d("XEK", "onCreate Search");
@@ -37,13 +47,11 @@ public class FragmentSearch extends Fragment {
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("SEARCHKEY", query);
                 intent.putExtras(bundle);
                 startActivity(intent);
-
                 return false;
             }
 
@@ -53,6 +61,64 @@ public class FragmentSearch extends Fragment {
             }
         });
 
+        buttonFisch = (Button)getActivity().findViewById(R.id.search_buttonFisch);
+        buttonFisch.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                String type = "Fisch";
+                filterEvent(type);
+            }
+        });
+        buttonFleisch = (Button)getActivity().findViewById(R.id.search_buttonFleisch);
+        buttonFleisch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "Fleisch";
+                filterEvent(type);
+            }
+        });
+        buttonGemuese = (Button)getActivity().findViewById(R.id.search_buttonGemuese);
+        buttonGemuese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "Gemüse";
+                filterEvent(type);
+            }
+        });
+        buttonGetreide = (Button)getActivity().findViewById(R.id.search_buttonGetreide);
+        buttonGetreide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "Getreide";
+                filterEvent(type);
+            }
+        });
+        buttonMilch = (Button)getActivity().findViewById(R.id.search_buttonMilch);
+        buttonMilch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "Milchprodukt";
+                filterEvent(type);
+            }
+        });
+        buttonObst = (Button)getActivity().findViewById(R.id.search_buttonObst);
+        buttonObst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = "Obst";
+                filterEvent(type);
+            }
+        });
+
+    }
+
+    public void filterEvent(String type){
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("FILTERKEY", type);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }

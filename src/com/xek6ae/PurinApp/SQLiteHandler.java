@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -116,10 +117,11 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return labels;
     }
 
+    //TODO kann weg
     public ArrayList<String> searchLabel(String shortcut){
         ArrayList<String> labels = new ArrayList<String>();
         String selectQuery = "SELECT name FROM gericht WHERE name LIKE '%"+shortcut+"%' ORDER BY name ASC";
-        //TODO sichere injection? selectQuery sicher?!
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -133,6 +135,38 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         db.close();
 
         return labels;
+    }
+
+    public ArrayList<String[]> getDataMode(int mode,String search, String type){
+        ArrayList<String[]> list = new ArrayList<String[]>();
+        String[] row;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = null;
+
+        if(mode==0){
+            //TODO sichere injection? selectQuery sicher genug?!
+            query = "SELECT name, kategorie, purinwert FROM gericht WHERE name LIKE '%"+search+"%' ORDER BY name ASC";
+        }
+        if(mode==1){
+            query = "SELECT name, kategorie, purinwert FROM gericht WHERE kategorie='"+type+"' ORDER BY name ASC;";
+        }
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                row = new String[3]; //ERNSTHAFT?! warum muss hier ne neue instanz hin? ansonsten "overrides"
+                for(int i=0; i<3; i++){
+                    row[i] = cursor.getString(i);
+                    Log.d("XEK", "Input "+row[i]);
+                }
+                list.add(row);
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return list;
     }
 
     public String[] getDataArray(String name){
@@ -150,7 +184,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return string;
     }
 
-    //TODO: veraltet --> individuelle Ausgabe, siehe Kategorien
+    //TODO: veraltet --> individuelle Ausgabe, siehe Kategorien  --- kann weg ?
     public List<String> getAllLabels(){
         List<String> labels = new ArrayList<String>();
         //SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_PATH+DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
