@@ -25,6 +25,7 @@ public class CalcDialog extends DialogFragment {
         String inputValue = getArguments().getString("INPUT");
         String calcName = getArguments().getString("NAME");
         TextView textCalc = (TextView)view.findViewById(R.id.dialog_textCalc);
+        final int temp = Integer.parseInt(calcValue);
 
         setCancelable(false);
 
@@ -34,6 +35,8 @@ public class CalcDialog extends DialogFragment {
             public void onClick(View v) {
                 //TODO: hinzufügen des Wertes in Datenbank
                 Toast.makeText(v.getContext(),"Wert wurde Hinzugefügt.", Toast.LENGTH_SHORT).show();
+                SQLiteHandler db = new SQLiteHandler(getActivity().getBaseContext());
+                db.insertValue(temp);
                 dismiss();
             }
         });

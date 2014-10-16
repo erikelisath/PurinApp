@@ -20,8 +20,7 @@ public class UberActivity extends Activity {
         actionBar.setTitle("Über");
 
         SQLiteHandler db = new SQLiteHandler(getBaseContext());
-        int count = db.getDataInt("SELECT COUNT(*) FROM gericht");
         TextView textCount = (TextView)findViewById(R.id.uber_counting);
-        textCount.setText("The Database list "+count+" Items.");
+        textCount.setText("The Database list "+db.countEntries()+" Items.");
     }
 }

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Schnittstelle zu SQLite Methoden
- * Erstellung, Überprüfung und Datentransfer
+ * Schnittstelle für SQLiteDatabase
+ * Methoden zur Abfrage, Erstellung und Datenausgabe der Datenbank
  *
  * Created by xek6ae on 20.08.14.
  */
@@ -26,9 +26,6 @@ public class SQLiteHandler extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH = "";
 
-    private static final String TABLE = "gericht";
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
     private final Context myContext;
 
 
@@ -38,12 +35,21 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         DATABASE_PATH = "/data/data/"+context.getPackageName()+"/databases/";
     }
 
-    public void importIfNotExist() throws IOException{
-        boolean dbExist = checkExist();
+    @Override
+    public void onCreate(SQLiteDatabase db) {
 
-        if(dbExist){
-            // do nothing
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    public void importIfNotExist() throws IOException{
+        if(checkExist()){
+            // do nothing or checking updates?
         }else{
+            // Create a default database to overwrite it
             this.getReadableDatabase();
             try{
                 copyDataBase();
@@ -67,7 +73,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
             checkDB.close();
         }
 
-        return checkDB != null ? true : false;
+        return checkDB != null;
     }
 
     private void copyDataBase() throws IOException{
@@ -85,16 +91,6 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         myOutput.flush();
         myOutput.close();
         myInput.close();
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public ArrayList<String> getAllLabelsArrayList(){
@@ -117,34 +113,19 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return labels;
     }
 
-    //TODO kann weg
-    public ArrayList<String> searchLabel(String shortcut){
-        ArrayList<String> labels = new ArrayList<String>();
-        String selectQuery = "SELECT name FROM gericht WHERE name LIKE '%"+shortcut+"%' ORDER BY name ASC";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        if(cursor.moveToFirst()){
-            do{
-                labels.add(cursor.getString(0));
-            }while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-
-        return labels;
-    }
-
-    public ArrayList<String[]> getDataMode(int mode,String search, String type){
+    /**
+       @param mode Int not NULL
+       @param search String Searchtag
+       @param type String Categorie
+       @return ArrayList with String-arrays
+     */
+    public ArrayList<String[]> getDataByMode(int mode,String search, String type){
         ArrayList<String[]> list = new ArrayList<String[]>();
         String[] row;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = null;
 
         if(mode==0){
-            //TODO sichere injection? selectQuery sicher genug?!
             query = "SELECT name, kategorie, purinwert FROM gericht WHERE name LIKE '%"+search+"%' ORDER BY name ASC";
         }
         if(mode==1){
@@ -157,7 +138,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
                 row = new String[3]; //ERNSTHAFT?! warum muss hier ne neue instanz hin? ansonsten "overrides"
                 for(int i=0; i<3; i++){
                     row[i] = cursor.getString(i);
-                    Log.d("XEK", "Input "+row[i]);
+                    //Log.d("XEK", "Input "+row[i]);
                 }
                 list.add(row);
             }while(cursor.moveToNext());
@@ -169,6 +150,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return list;
     }
 
+    //TODO: mit in getDataByMode implementieren?
     public String[] getDataArray(String name){
         String[] string = new String[5];
         SQLiteDatabase db = this.getReadableDatabase();
@@ -181,60 +163,39 @@ public class SQLiteHandler extends SQLiteOpenHelper{
                 }
             }while(cursor.moveToNext());
         }
+
+        cursor.close();
+        db.close();
+
         return string;
     }
 
-    //TODO: veraltet --> individuelle Ausgabe, siehe Kategorien  --- kann weg ?
-    public List<String> getAllLabels(){
-        List<String> labels = new ArrayList<String>();
-        //SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_PATH+DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
-        String selectQuery = "select name from gericht"; //"SELECT "+KEY_NAME+" FROM "+TABLE;
-        //db = SQLiteDatabase.openDatabase(DATABASE_PATH+DATABASE_NAME, null, SQLiteDatabase.OPEN_READONLY);
+    public int countEntries(){
+        int e;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery,null);
-
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM gericht", null);
         if(cursor.moveToFirst()){
-            do{
-                labels.add(cursor.getString(0));    // wenn SQL * hat, dann spalte angeben
-            }while(cursor.moveToNext());
+            e = cursor.getInt(0);
+        }else{
+            e = -1;
         }
-
         cursor.close();
         db.close();
-
-        return labels;
+        return e;
     }
 
-    //TODO: Key benutzen?    kann weg
-    public String getDataString(String sql){
-        String response;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
+    public void insertValue(int value){
+        int tageswert;
+        int anzahl = 1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT tageswert, anzahl FROM nutzer WHERE erstellt='20:37:08'", null);
 
         if(cursor.moveToFirst()){
-            response = cursor.getString(0);
+            tageswert = cursor.getInt(0)+value;
+            anzahl = cursor.getInt(1)+1;
+            db.execSQL("UPDATE nutzer SET tageswert="+tageswert+", anzahl="+anzahl+" WHERE erstellt='20:37:08'");
         }else{
-            response = "Not found.";
+            db.execSQL("INSERT INTO nutzer (tageswert, anzahl) VALUES ("+value+","+anzahl+")");
         }
-
-        cursor.close();
-        db.close();
-        return response;
-    }
-
-    //TODO: Key benutzen?  kann weg
-    public int getDataInt(String sql){
-        int response;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-        if(cursor.moveToFirst()){
-            response = cursor.getInt(0);
-        }else{
-            response = -1;
-        }
-
-        cursor.close();
-        db.close();
-        return response;
     }
 }

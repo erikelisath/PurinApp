@@ -16,10 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SelectActivity"
-                  android:label="@string/app_name"
-                  android:screenOrientation="portrait">
-        </activity>
         <activity android:name=".UberActivity"
                   android:parentActivityName=".ActionBarActivity"/>
         <activity android:name=".SearchActivity"

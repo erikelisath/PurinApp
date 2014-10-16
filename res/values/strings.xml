@@ -2,19 +2,9 @@
 <resources>
     <!-- Strings der App -->
     <string name="app_name">Purinwerte in Gerichten</string>
-
-    <!-- Strings aus oldAuswahl -->
-    <string name="einleitung">Bitte einen Eintrag auswählen.</string>
-    <string name="textPurinwert">Purinwert</string>
-    <string name="programm">mg/100g</string>
-    <string name="textHarn">Harnsäurewert</string>
-    <string name="textAktuell">Aktuellen Purinwert ermitteln für:</string>
-    <string name="bezeichner1">g =</string>
-    <string name="bezeichner2">mg Purin</string>
-
     <!-- Strings aus FragmentSelect -->
     <string name="textAuswahl">Bitte Eintrag auswählen</string>
-    <string name="textPutinwert">Purinwert</string>
+    <string name="textPurinwert">Purinwert</string>
     <string name="textHarnwert">Harnsäurewert</string>
     <string name="textEinheit">mg/100g</string>
     <string name="textAusrechnen">Aktuellen Purinwert ermitteln für:</string>

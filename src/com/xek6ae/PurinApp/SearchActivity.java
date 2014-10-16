@@ -55,6 +55,6 @@ public class SearchActivity extends ListActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
-        return db.getDataMode(mode, search, type);
+        return db.getDataByMode(mode, search, type);
     }
 }
