@@ -28,6 +28,10 @@ public class CalcDialog extends DialogFragment {
         final int temp = Integer.parseInt(calcValue);
 
         setCancelable(false);
+        TextView greatText = (TextView)view.findViewById(R.id.dialog_textPurinwert);
+        greatText.setText(calcValue);
+        //TODO: calcValue Farbig?
+        textCalc.setText("Bei "+inputValue+"g "+calcName+".");
 
         Button buttonAdd = (Button)view.findViewById(R.id.dialog_buttonAdd);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +52,7 @@ public class CalcDialog extends DialogFragment {
                 dismiss();
             }
         });
-        //TODO: calcValue Farbig?
-        textCalc.setText(inputValue+"g "+calcName+" hat "+calcValue+" mg Purin.");
+
         return view;
     }
     /**

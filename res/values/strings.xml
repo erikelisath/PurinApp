@@ -8,9 +8,10 @@
     <string name="textHarnwert">Harnsäurewert</string>
     <string name="textEinheit">mg/100g</string>
     <string name="textAusrechnen">Aktuellen Purinwert ermitteln für:</string>
-    <string name="textEinheit2">g</string>
+    <string name="textEinheit2">Gramm</string>
     <string name="buttonBerechne">Berechnen</string>
     <!-- Strings aus CalcDialog -->
+    <string name="textEinheit3">Milligramm Purin</string>
     <string name="textAdd">Diesen Wert können sie ihrem Tagesbedarf hinzufügen.</string>
     <string name="buttonAdd">Hinzufügen</string>
     <string name="buttonCancel">Abbruch</string>

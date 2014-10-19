@@ -1,7 +1,9 @@
 package com.xek6ae.PurinApp;
 
 import android.app.*;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
@@ -35,7 +37,6 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
     private ImageView imageLights;
     private EditText inputPurinValue;
     private Button buttoncalculate;
-    private ImageButton buttonadd;
 
 
     public void onCreate(Bundle savedInstanceState){
@@ -125,22 +126,23 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         dialogbundle.putString("NAME", label);
         textPurin.setText(label);
         textPurinSmall.setText(item[1]);
-        //textPurinCalc.setText(item[1]);
-        //textCategory.setText(db.getDataString("SELECT kategorie FROM gericht WHERE name='"+label+"';"));
-        //textPurinValue.setText(db.getDataString("SELECT purinwert FROM gericht WHERE name='"+label+"';"));
-        //textHarnValue.setText(db.getDataString("SELECT harnsaeurewert FROM gericht WHERE name='"+label+"';"));
         textCategory.setText(item[2]);
         textPurinValue.setText(item[3]);
         textHarnValue.setText(item[4]);
 
-
         purinValue = Integer.parseInt(item[3]);
         if(purinValue>50){
-            imageLights.setImageResource(R.drawable.red);
+            //imageLights.setImageResource(R.drawable.red);
+            imageLights.setBackgroundColor(getResources().getColor(R.color.red));
+            imageLights.setContentDescription("rot");
         }else if(purinValue>20){
-            imageLights.setImageResource(R.drawable.yellow);
+            //imageLights.setImageResource(R.drawable.yellow);
+            imageLights.setBackgroundColor(getResources().getColor(R.color.yellow));
+            imageLights.setContentDescription("gelb");
         }else{
-            imageLights.setImageResource(R.drawable.green);
+            //imageLights.setImageResource(R.drawable.green);
+            imageLights.setBackgroundColor(getResources().getColor(R.color.green));
+            imageLights.setContentDescription("grün");
         }
 
         //progressDialog.dismiss(); //LOL INTERNET ...
