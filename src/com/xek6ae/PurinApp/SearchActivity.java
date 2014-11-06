@@ -5,9 +5,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,12 +32,12 @@ public class SearchActivity extends ListActivity {
         if(searchkey!=null){
             actionBar.setTitle("Ergebnisse für '"+searchkey+"'");
             list = loadSearchContent(SEARCH, searchkey, null);
-            setListAdapter(new ListViewAdapter(this, list));
+            setListAdapter(new SearchListViewAdapter(this, list));
         }
         if(filterkey!=null){
             actionBar.setTitle("Ergebnisse für '"+filterkey+"'");
             list = loadSearchContent(FILTER, null, filterkey);
-            setListAdapter(new ListViewAdapter(this, list));
+            setListAdapter(new SearchListViewAdapter(this, list));
         }
 
     }

@@ -1,24 +1,22 @@
 package com.xek6ae.PurinApp;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 /**
  * Created by xek6ae on 06.10.14.
  */
-public class ListViewAdapter extends BaseAdapter {
+public class SearchListViewAdapter extends BaseAdapter {
     Context context;
     ArrayList<String[]> list = null;
 
-    public  ListViewAdapter(Context context, ArrayList<String[]> list){
+    public SearchListViewAdapter(Context context, ArrayList<String[]> list){
         this.context = context;
         this.list = list;
     }
@@ -45,7 +43,7 @@ public class ListViewAdapter extends BaseAdapter {
         TextView textPurin;
 
         if(convertView==null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_adapter_row, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.search_listviewadapter_row, parent, false);
             textName = (TextView)convertView.findViewById(R.id.adapter_textName);
             textKategorie= (TextView)convertView.findViewById(R.id.adapter_textKategorie);
             textPurin= (TextView)convertView.findViewById(R.id.adapter_textPurin);

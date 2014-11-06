@@ -2,7 +2,7 @@
 <resources>
     <color name="theme_background">#333333</color>
     <color name="theme_background_highlight">#191919</color>
-    <color name="theme_highlight">#FF9021</color>
+    <color name="theme_primery">#FF9021</color>
     <color name="tab_selected">#ff8307</color>
     <color name="text_light">#FFFFFF</color>
     <color name="transparent">#00000000</color>

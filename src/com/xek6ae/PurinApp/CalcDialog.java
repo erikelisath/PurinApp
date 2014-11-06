@@ -25,12 +25,12 @@ public class CalcDialog extends DialogFragment {
         String inputValue = getArguments().getString("INPUT");
         String calcName = getArguments().getString("NAME");
         TextView textCalc = (TextView)view.findViewById(R.id.dialog_textCalc);
-        final int temp = Integer.parseInt(calcValue);
+        TextView greatText = (TextView)view.findViewById(R.id.dialog_textPurinwert);
+        final int saveValue = Integer.parseInt(calcValue);
 
         setCancelable(false);
-        TextView greatText = (TextView)view.findViewById(R.id.dialog_textPurinwert);
+
         greatText.setText(calcValue);
-        //TODO: calcValue Farbig?
         textCalc.setText("Bei "+inputValue+"g "+calcName+".");
 
         Button buttonAdd = (Button)view.findViewById(R.id.dialog_buttonAdd);
@@ -40,7 +40,7 @@ public class CalcDialog extends DialogFragment {
                 //TODO: hinzufügen des Wertes in Datenbank
                 Toast.makeText(v.getContext(),"Wert wurde Hinzugefügt.", Toast.LENGTH_SHORT).show();
                 SQLiteHandler db = new SQLiteHandler(getActivity().getBaseContext());
-                db.insertValue(temp);
+                db.insertValue(saveValue);
                 dismiss();
             }
         });

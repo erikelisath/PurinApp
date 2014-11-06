@@ -22,6 +22,7 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
 
     private int purinValue;
     private int purinInput;
+    private Bundle bundle;
     private Bundle dialogbundle;
     private ProgressDialog progressDialog;
     private FragmentManager fm;
@@ -43,6 +44,7 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         super.onCreate(savedInstanceState);
         Log.d("XEK", "onCreate Select");
         //TODO: was hier her?
+        bundle = this.getArguments();
         dialogbundle  = new Bundle();
         fm = getFragmentManager();
     }
@@ -50,13 +52,6 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d("XEK", "onCreateView Select");
-        //progressDialog = new ProgressDialog(container.getContext(), R.style.LoadingDialog);
-        //progressDialog.setCancelable(false);
-        //progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        //progressDialog.setContentView(R.layout.dialog_progressbar);
-        //progressDialog.setTitle(null);
-        //progressDialog.show();
-        //TODO: custom Progressbar dialog
         progressSpinner = new SpinnerDialog();
         progressSpinner.show(fm, null);
         return inflater.inflate(R.layout.fragment_select, container, false);
@@ -66,8 +61,7 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         super.onActivityCreated(savedInstanceState);
         Log.d("XEK", "onActivityCreate Select");
 
-        //recived bundle from main Activity ( arrayList )
-        Bundle bundle = this.getArguments();
+        //## recived bundle from main Activity ( arrayList )
         ArrayList<String> arrayList = bundle.getStringArrayList("SELECT");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrayList);
@@ -81,7 +75,6 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         textPurinValue = (TextView)getActivity().findViewById(R.id.select_textPurinValue);
         textHarnValue = (TextView)getActivity().findViewById(R.id.select_textHarnValue);
         textPurinSmall = (TextView)getActivity().findViewById(R.id.select_textPurinNameSmall);
-        //textPurinCalc = (TextView)getActivity().findViewById(R.id.select_textPurin2);
         imageLights = (ImageView)getActivity().findViewById(R.id.select_pictogramAttention);
         inputPurinValue = (EditText)getActivity().findViewById(R.id.select_inputNumber);
         inputPurinValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -121,7 +114,27 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
         String label = s1.getSelectedItem().toString();
         String item[];
 
-        item = db.getDataArray(label);
+        //TODO: logik überprüpfen - überflüssig?
+        //## db Zugriff minimieren:
+        //## ist bundle leer, wenn nicht ist label und bundle_item_1 gleich?
+        //## falls, bundle wird übernommen
+        //## sonst, wird DB zugegriffen
+        bundle = this.getArguments();
+        String backuparrays[] = bundle.getStringArray("BACKUPARRAYS");
+        if(backuparrays!=null){
+            if(label.equals(backuparrays[1])){
+                item = backuparrays;
+                Log.d("XEK", label+"="+backuparrays[1]+" => backuparrays -> item");
+            }else{
+                item = db.getDataArray(label);
+                Log.d("XEK", "label != bundle => DB zugriff");
+            }
+        }else{
+            item = db.getDataArray(label);
+            Log.d("XEK", "!bundle => DB zugriff");
+        }
+        bundle.putStringArray("BACKUPARRAYS", item);
+        onSaveInstanceState(bundle);
 
         dialogbundle.putString("NAME", label);
         textPurin.setText(label);
@@ -132,24 +145,18 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
 
         purinValue = Integer.parseInt(item[3]);
         if(purinValue>50){
-            //imageLights.setImageResource(R.drawable.red);
             imageLights.setBackgroundColor(getResources().getColor(R.color.red));
             imageLights.setContentDescription("rot");
         }else if(purinValue>20){
-            //imageLights.setImageResource(R.drawable.yellow);
             imageLights.setBackgroundColor(getResources().getColor(R.color.yellow));
             imageLights.setContentDescription("gelb");
         }else{
-            //imageLights.setImageResource(R.drawable.green);
             imageLights.setBackgroundColor(getResources().getColor(R.color.green));
             imageLights.setContentDescription("grün");
         }
 
-        //progressDialog.dismiss(); //LOL INTERNET ...
         progressSpinner.dismiss();
         inputPurinValue.setText("");
-        //textPurinCalc.setText("0 mg Purin");
-        //buttonadd.setVisibility(View.GONE);
     }
 
     @Override

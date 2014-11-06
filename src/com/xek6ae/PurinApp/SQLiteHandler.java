@@ -119,7 +119,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
        @param type String Categorie
        @return ArrayList with String-arrays
      */
-    public ArrayList<String[]> getDataByMode(int mode,String search, String type){
+    public ArrayList<String[]> getDataByMode(int mode, String search, String type){
         ArrayList<String[]> list = new ArrayList<String[]>();
         String[] row;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -188,14 +188,47 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         int tageswert;
         int anzahl = 1;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT tageswert, anzahl FROM nutzer WHERE erstellt='20:37:08'", null);
+        Cursor cursor = db.rawQuery("SELECT tageswert, anzahl FROM nutzer WHERE erstellt=date()", null);
 
         if(cursor.moveToFirst()){
             tageswert = cursor.getInt(0)+value;
             anzahl = cursor.getInt(1)+1;
-            db.execSQL("UPDATE nutzer SET tageswert="+tageswert+", anzahl="+anzahl+" WHERE erstellt='20:37:08'");
+            db.execSQL("UPDATE nutzer SET tageswert="+tageswert+", anzahl="+anzahl+" WHERE erstellt=date()");
         }else{
             db.execSQL("INSERT INTO nutzer (tageswert, anzahl) VALUES ("+value+","+anzahl+")");
         }
+    }
+
+    public ArrayList<String[]> getDateValues(int mode){
+        ArrayList<String[]> list = new ArrayList<String[]>();
+        String query = null;
+        String[] row;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        if(mode==0){
+            //heute
+            query = "SELECT tageswert, anzahl, erstellt FROM nutzer WHERE erstellt=date('now')";
+        }if(mode==1){
+            //letzten 10 tage
+            query = "SELECT tageswert, anzahl, erstellt FROM nutzer WHERE erstellt>=date('now', '-10 day') ORDER BY erstellt DESC";
+        }if(mode==2){
+            //letzten monat
+            query = "SELECT tageswert, anzahl, erstellt FROM nutzer WHERE erstellt>=date('now', 'start of month', '-1 month') and erstellt<=date('now', 'start of month', '-1 day') ORDER BY erstellt DESC";
+        }
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                row = new String[3];
+                for(int i=0; i<3; i++){
+                    row[i] = cursor.getString(i);
+                }
+                list.add(row);
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return list;
     }
 }

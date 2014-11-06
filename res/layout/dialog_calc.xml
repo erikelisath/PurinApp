@@ -19,7 +19,7 @@
             android:id="@+id/dialog_textPurinwert"
             android:layout_gravity="center_horizontal"
             android:textSize="50sp"
-            android:textColor="@color/theme_highlight"/>
+            android:textColor="@color/theme_primery"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
