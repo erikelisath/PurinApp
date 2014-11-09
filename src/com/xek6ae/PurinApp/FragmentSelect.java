@@ -1,24 +1,19 @@
 package com.xek6ae.PurinApp;
 
 import android.app.*;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 /**
  * Created by xek6ae on 02.09.14.
  */
-class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListener{
+public class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListener{
 
     private int purinValue;
     private int purinInput;
@@ -52,8 +47,8 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d("XEK", "onCreateView Select");
-        progressSpinner = new SpinnerDialog();
-        progressSpinner.show(fm, null);
+        //progressSpinner = new SpinnerDialog();
+        //progressSpinner.show(fm, null);
         return inflater.inflate(R.layout.fragment_select, container, false);
     }
 
@@ -155,7 +150,7 @@ class FragmentSelect extends Fragment implements AdapterView.OnItemSelectedListe
             imageLights.setContentDescription("grün");
         }
 
-        progressSpinner.dismiss();
+        //progressSpinner.dismiss();
         inputPurinValue.setText("");
     }
 

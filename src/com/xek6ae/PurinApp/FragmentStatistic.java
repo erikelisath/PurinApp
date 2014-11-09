@@ -1,7 +1,8 @@
 package com.xek6ae.PurinApp;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +27,13 @@ public class FragmentStatistic extends Fragment implements AdapterView.OnItemSel
     private ArrayList<String[]> arrayList = new ArrayList<String[]>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d("XEK", "onActivityCreated: Static:"+container.toString());
         return inflater.inflate(R.layout.fragment_statistic, container, false);
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Log.d("XEK", "onActivityCreated: Static");
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, auswahl);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner = (Spinner) getActivity().findViewById(R.id.statistic_spinner);
