@@ -15,23 +15,36 @@
             android:textSize="15sp"/>
     <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:padding="2dp"
             android:background="@drawable/highlight_outlines"
-            android:layout_margin="1dp">
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp">
         <FrameLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
-            <SearchView
+        <!--    <SearchView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/searchView"
                 android:iconifiedByDefault="false"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="17dp"/>
+                android:layout_marginTop="17dp"/> -->
             <!--TODO: schöner machen -->
         </FrameLayout>
+        <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bitte Namen eingeben ..."
+                android:id="@+id/autoCompleteTextView"
+                android:layout_gravity="center_horizontal"
+                android:singleLine="true"
+                android:digits="abcdefghijklmnopqrstuvwxyzßäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ"
+                android:inputType="text|textNoSuggestions"
+                android:imeOptions="actionSearch"
+                android:layout_marginTop="20dp"/>
     </FrameLayout>
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

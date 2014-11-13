@@ -4,10 +4,11 @@ import android.support.v4.app.Fragment;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
  */
 public class FragmentSearch extends Fragment {
 
+    public AutoCompleteTextView autoComplte;
+    public Bundle bundle;
     public Button buttonFleisch;
     public Button buttonFisch;
     public Button buttonGemuese;
@@ -31,6 +34,7 @@ public class FragmentSearch extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d("XEK", "onCreate Search");
         //TODO: was hier her?
+        bundle = getArguments();
     }
 
     @Override
@@ -43,24 +47,85 @@ public class FragmentSearch extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         Log.d("XEK", "onActivityCreated Search");
-        SearchView search = (SearchView) getActivity().findViewById(R.id.searchView);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Intent intent = new Intent(getActivity(), SearchActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("SEARCHKEY", query);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                return false;
-            }
 
+        //## Suchfeld
+        ArrayList<String> list = bundle.getStringArrayList("SELECT");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, list);
+        autoComplte = (AutoCompleteTextView)getActivity().findViewById(R.id.autoCompleteTextView);
+        autoComplte.setAdapter(adapter);
+        autoComplte.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            // Start search if IME_ACTION_SEARCH pressed
             @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    Intent intent = new Intent(getActivity(), SearchActivity.class);
+                    Bundle bundle = new Bundle();
+                    if (!autoComplte.getText().toString().isEmpty()){
+                        bundle.putString("SEARCHKEY", autoComplte.getText().toString());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        Toast.makeText(getActivity(), "Search it! "+autoComplte.getText(),Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        Toast.makeText(getActivity(), "Bitte Namen eingeben!",Toast.LENGTH_LONG).show();
+                    }
+                    handled = true;
+                }
+                return handled;
             }
         });
+        autoComplte.addTextChangedListener(new TextWatcher() {
+            boolean hide = true; //glaube bekomme noch ärger mit der Style-Police-of-programmer
 
+            // show and hide the cancel button
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // nothing to do
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                Log.d("XEK", "onTextChanged"+" start: "+start+" count: "+count+" before: "+before);
+                if(start == 0 && count == 1){
+                    Log.d("XEK", "show X");
+                    autoComplte.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.draw_cancel2), null);
+                    hide = false;
+                }
+                if(start == 0 && count == 0){
+                    Log.d("XEK", "hide X");
+                    autoComplte.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                    hide = true;
+                }
+                autoComplte.setOnTouchListener(new View.OnTouchListener() {
+                    // when pressed in area of the cancel button, it cancel
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        final int DRAWABLE_RIGHT = 2;
+                        if(event.getAction() == MotionEvent.ACTION_UP){
+                            if(!hide){
+                                if(event.getRawX() >= (autoComplte.getRight() - (autoComplte.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())*2)){
+                                    Log.d("XEK", "Touched X"+autoComplte.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width());
+                                    autoComplte.setText("");
+                                    return true;
+                                }
+                            }
+
+                        }
+                        return false;
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // nothing to do
+            }
+        });
+        //## Suchfeld -end
+
+        //## Filterbuttons
         buttonFisch = (Button)getActivity().findViewById(R.id.search_buttonFisch);
         buttonFisch.setOnClickListener(new View.OnClickListener(){
 
@@ -110,6 +175,34 @@ public class FragmentSearch extends Fragment {
                 filterEvent(type);
             }
         });
+        //## Filterbuttons -end
+
+        //## Sortierbuttons nach Purinmenge
+        buttonPurinS = (Button)getActivity().findViewById(R.id.search_buttonPurinS);
+        buttonPurinS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int type = SearchActivity.PURIN_S;
+                filterEvent(type);
+            }
+        });
+        buttonPurinM = (Button)getActivity().findViewById(R.id.search_buttonPurinM);
+        buttonPurinM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int type = SearchActivity.PURIN_M;
+                filterEvent(type);
+            }
+        });
+        buttonPurinL = (Button)getActivity().findViewById(R.id.search_buttonPurinL);
+        buttonPurinL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int type = SearchActivity.PURIN_L;
+                filterEvent(type);
+            }
+        });
+        //## Sortierbuttons -end
 
     }
 
@@ -117,6 +210,14 @@ public class FragmentSearch extends Fragment {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("FILTERKEY", type);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void filterEvent(int type){
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("SORTKEY", type);
         intent.putExtras(bundle);
         startActivity(intent);
     }

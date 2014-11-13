@@ -119,17 +119,29 @@ public class SQLiteHandler extends SQLiteOpenHelper{
        @param type String Categorie
        @return ArrayList with String-arrays
      */
-    public ArrayList<String[]> getDataByMode(int mode, String search, String type){
+    public ArrayList<String[]> getDataByMode(int mode, String search, int type){
         ArrayList<String[]> list = new ArrayList<String[]>();
         String[] row;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = null;
 
-        if(mode==0){
+        if(mode == 0){
             query = "SELECT name, kategorie, purinwert FROM gericht WHERE name LIKE '%"+search+"%' ORDER BY name ASC";
         }
-        if(mode==1){
-            query = "SELECT name, kategorie, purinwert FROM gericht WHERE kategorie='"+type+"' ORDER BY name ASC;";
+        if(mode == 1){
+            query = "SELECT name, kategorie, purinwert FROM gericht WHERE kategorie='"+search+"' ORDER BY name ASC;";
+        }
+        if(mode == 2){
+            if(type == SearchActivity.PURIN_S){
+                query = "SELECT name, kategorie, purinwert FROM gericht WHERE purinwert<=20 ORDER BY purinwert ASC";
+            }
+            if(type == SearchActivity.PURIN_M){
+                query = "SELECT name, kategorie, purinwert FROM gericht WHERE purinwert>20 AND purinwert<50 ORDER BY purinwert ASC";
+            }
+            if(type == SearchActivity.PURIN_L){
+                query = "SELECT name, kategorie, purinwert FROM gericht WHERE purinwert>=50 ORDER BY purinwert ASC";
+            }
+
         }
         Cursor cursor = db.rawQuery(query, null);
 

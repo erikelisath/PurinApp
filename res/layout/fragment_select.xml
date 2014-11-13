@@ -18,10 +18,10 @@
                 android:textSize="15sp"/>
         <FrameLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:padding="2dp"
                 android:background="@drawable/highlight_outlines"
-                android:layout_margin="1dp">
+                android:layout_marginRight="1dp" android:layout_marginLeft="1dp">
             <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
