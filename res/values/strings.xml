@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Strings der App -->
-    <string name="app_name">Purinwerte in Gerichten</string>
+    <string name="app_name">Purinwerte</string>
     <!-- Strings aus FragmentSelect -->
     <string name="textAuswahl">Bitte Eintrag auswählen</string>
     <string name="textPurinwert">Purinwert</string>
@@ -27,6 +27,7 @@
     <string name="textPurinXL">viel Purin</string>
     <string name="textPurinM">mittel Purin</string>
     <string name="textPurinS">wenig Purin</string>
+    <string name="text_searchhint">Bitte Namen eingeben …</string>
     <!-- Strings aus Uber -->
     <string name="textVersion">Version</string>
     <string name="textWebsite">Website</string>

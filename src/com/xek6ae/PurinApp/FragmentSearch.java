@@ -68,7 +68,7 @@ public class FragmentSearch extends Fragment {
                         Toast.makeText(getActivity(), "Search it! "+autoComplte.getText(),Toast.LENGTH_SHORT).show();
 
                     }else{
-                        Toast.makeText(getActivity(), "Bitte Namen eingeben!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"Bitte Namen eingeben!",Toast.LENGTH_LONG).show();
                     }
                     handled = true;
                 }
@@ -90,7 +90,7 @@ public class FragmentSearch extends Fragment {
                 Log.d("XEK", "onTextChanged"+" start: "+start+" count: "+count+" before: "+before);
                 if(start == 0 && count == 1){
                     Log.d("XEK", "show X");
-                    autoComplte.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.draw_cancel2), null);
+                    autoComplte.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.draw_cancel3), null);
                     hide = false;
                 }
                 if(start == 0 && count == 0){

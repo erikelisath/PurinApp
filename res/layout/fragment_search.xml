@@ -35,7 +35,7 @@
         <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bitte Namen eingeben ..."
+                android:hint="@string/text_searchhint"
                 android:id="@+id/autoCompleteTextView"
                 android:layout_gravity="center_horizontal"
                 android:singleLine="true"
