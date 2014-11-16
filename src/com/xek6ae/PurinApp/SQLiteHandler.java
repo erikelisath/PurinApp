@@ -23,7 +23,7 @@ import java.util.List;
 public class SQLiteHandler extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "PurinDatabase_1.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static String DATABASE_PATH = "";
 
     private final Context myContext;
@@ -48,10 +48,15 @@ public class SQLiteHandler extends SQLiteOpenHelper{
     public void importIfNotExist() throws IOException{
         if(checkExist()){
             // do nothing or checking updates?
+            Log.d("XEK", String.valueOf(getReadableDatabase().getVersion()));
         }else{
             // Create a default database to overwrite it
-            this.getReadableDatabase();
+            //this.getReadableDatabase();
+            Log.d("XEK", "delete and open");
             try{
+                deleteDatabases();
+                getReadableDatabase();  // geht auch ohne
+                close();                // kompatibilität mit anderen geräten
                 copyDataBase();
             }catch (IOException e){
                 throw new Error("Error copying database!");
@@ -65,6 +70,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         try{
             String myPath = DATABASE_PATH+DATABASE_NAME;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            Log.d("XEK", checkDB.getPath());
         }catch (SQLiteException e){
              e.printStackTrace();
         }
@@ -91,6 +97,16 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         myOutput.flush();
         myOutput.close();
         myInput.close();
+    }
+    //todo: brauch ich ein rückgabe wert? true wenn alles gelöscht?
+    private void deleteDatabases(){
+        String[] databaseList = myContext.databaseList();
+        if(databaseList != null){
+            for(int i=0; i<databaseList.length; i++) {
+                Log.d("XEK", databaseList[i]);
+                myContext.deleteDatabase(databaseList[i]);
+            }
+        }
     }
 
     public ArrayList<String> getAllLabelsArrayList(){
