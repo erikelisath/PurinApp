@@ -217,13 +217,15 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         int anzahl = 1;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT tageswert, anzahl FROM nutzer WHERE erstellt=date()", null);
-
+        Log.d("XEK", "Aufruf: insertValue: "+cursor.toString());
         if(cursor.moveToFirst()){
             tageswert = cursor.getInt(0)+value;
             anzahl = cursor.getInt(1)+1;
             db.execSQL("UPDATE nutzer SET tageswert="+tageswert+", anzahl="+anzahl+" WHERE erstellt=date()");
+            Log.d("XEK", "UPDATE1:"+tageswert);
         }else{
             db.execSQL("INSERT INTO nutzer (tageswert, anzahl) VALUES ("+value+","+anzahl+")");
+            Log.d("XEK", "UPDATE2:"+value);
         }
     }
 

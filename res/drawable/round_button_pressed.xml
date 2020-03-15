@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:bottom="-3dp">
+        <shape android:shape="oval">
+            <size android:height="50dp" android:width="50dp"/>
+            <solid android:color="@color/theme_background"/>
+            <gradient android:type="radial"
+                      android:startColor="#000000"
+                      android:endColor="@color/transparent"
+                      android:gradientRadius="60"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <size android:height="50dp" android:width="50dp"/>
+            <solid android:color="@color/theme_primery"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <size android:height="50dp" android:width="50dp"/>
+            <solid android:color="@color/tab_selected"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_add_white_36dp"/>
+</layer-list>

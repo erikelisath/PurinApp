@@ -1,12 +1,16 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is my first Android App developed with IDEA back in 2014.
+
+Found this git repo unstaged on my old-day-backup, so I can't garantee if this will compile because of dependencies and new compiling mechanism.
+
+Documentation and comments mostly in german. Sorry will not change this.
+
 
 ### What is this repository for? ###
 
 * Anzeige der Purinwerte in Nahrungsmittel mit integrierter Suche und Filterung.
 * Version 2.1
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
 

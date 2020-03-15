@@ -2,7 +2,9 @@ package com.xek6ae.PurinApp;
 
 import android.app.*;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 
 import java.io.IOException;
@@ -31,6 +34,8 @@ public class ActionBarActivity extends FragmentActivity implements ActionBar.Tab
         ArrayList<String> list = loadDatabaseInList();
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("SELECT",list);
+
+
         Log.d("XEK", "ActionBar put Bundle");
 
         viewPager = (ViewPager)findViewById(R.id.fragment_container);
@@ -53,8 +58,7 @@ public class ActionBarActivity extends FragmentActivity implements ActionBar.Tab
 
             }
         });
-        //swipe animation
-        //viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+
 
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -78,6 +82,18 @@ public class ActionBarActivity extends FragmentActivity implements ActionBar.Tab
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d("XEK", "Main Activity onResume()");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //swipe animation
+        if(sharedPreferences.getBoolean(SettingActivity.PREF_FRAG_ANI_KEY, false)){
+            viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        }
+        //todo: anderen pagetransformer nutzen?
+    }
+
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
@@ -89,6 +105,7 @@ public class ActionBarActivity extends FragmentActivity implements ActionBar.Tab
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_settings:
+                startActivity(new Intent(this, SettingActivity.class));
                 return true;
             case R.id.action_update:
                 return true;
@@ -143,6 +160,10 @@ public class ActionBarActivity extends FragmentActivity implements ActionBar.Tab
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         Log.d("XEK", "Tab Selected "+tab.getText());
         viewPager.setCurrentItem(tab.getPosition());
+        View focus = getCurrentFocus();
+        if(focus != null){
+            hideKeyboard(focus);
+        }
     }
 
     @Override
@@ -193,5 +214,10 @@ public class ActionBarActivity extends FragmentActivity implements ActionBar.Tab
                 view.setAlpha(0);
             }
         }
+    }
+
+    public void hideKeyboard(View v){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 }

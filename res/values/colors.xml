@@ -9,4 +9,5 @@
     <color name="green">#2eb82e</color>
     <color name="yellow">#ffd500</color>
     <color name="red">#ff2121</color>
+    <color name="highlight">#55FFFFFF</color>
 </resources>

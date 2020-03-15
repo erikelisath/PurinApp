@@ -22,10 +22,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         Log.d("XEK", "getItem "+i);
         if(i==0){
-            fragment = new FragmentSelect();
+            fragment = new FragmentSelectRedesign();
             fragment.setArguments(bundle);
         }if(i==1){
-            fragment = new FragmentSearch();
+            fragment = new FragmentSearchRedesign();
             fragment.setArguments(bundle);
         }if(i==2){
             fragment = new FragmentStatistic();

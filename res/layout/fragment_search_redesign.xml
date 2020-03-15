@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="top" android:paddingLeft="15dp" android:paddingRight="15dp">
+        <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="@string/text_searchhint"
+                android:id="@+id/autoCompleteTextView"
+                android:layout_gravity="center_horizontal"
+                android:singleLine="true"
+                android:digits="abcdefghijklmnopqrstuvwxyzßäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ"
+                android:inputType="text|textNoSuggestions"
+                android:imeOptions="actionSearch"
+                android:layout_marginTop="20dp" android:background="@drawable/search_autocomplete"
+                android:textColor="@color/text_light" android:textColorHint="@color/text_light"
+                android:gravity="center"/>
+    </FrameLayout>
+    <GridView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gridView"
+            android:numColumns="3"
+            android:verticalSpacing="1dp"
+            android:horizontalSpacing="1dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center">
+    </GridView>
+</LinearLayout>
